@@ -1,0 +1,234 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/16/2021  21:28:26  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Thermometer.obj TO .\Objects\Thermometer PRINT (.\Listings\Thermometer.m51) RAMSIZ
+>> E (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Thermometer.obj (THERMOMETER)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?IMUL)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\Thermometer (THERMOMETER)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     001FH     UNIT         ?DT?THERMOMETER
+            IDATA   0027H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0194H     UNIT         ?PR?MAIN?THERMOMETER
+            CODE    0994H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0A20H     0036H     UNIT         ?PR?_CONVERT_DISPLAY?THERMOMETER
+            CODE    0A56H     001CH     UNIT         ?PR?_DELAY?THERMOMETER
+            CODE    0A72H     0012H     UNIT         ?PR?_CMDWRT?THERMOMETER
+            CODE    0A84H     0012H     UNIT         ?PR?_DATAWRT?THERMOMETER
+            CODE    0A96H     0012H     UNIT         ?C?LIB_CODE
+            CODE    0AA8H     0008H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Thermometer (THERMOMETER)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?THERMOMETER
+  +--> ?C_INITSEG
+
+?PR?MAIN?THERMOMETER
+  +--> ?PR?_CMDWRT?THERMOMETER
+  +--> ?PR?_DELAY?THERMOMETER
+  +--> ?PR?_DATAWRT?THERMOMETER
+  +--> ?PR?_CONVERT_DISPLAY?THERMOMETER
+
+?PR?_CMDWRT?THERMOMETER
+  +--> ?PR?_DELAY?THERMOMETER
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/16/2021  21:28:26  PAGE 2
+
+
+
+?PR?_DATAWRT?THERMOMETER
+  +--> ?PR?_DELAY?THERMOMETER
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Thermometer (THERMOMETER)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        THERMOMETER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C7H         PUBLIC        P4
+  D:00A5H         PUBLIC        P1MDOUT
+  D:00A6H         PUBLIC        P2MDOUT
+  D:00A7H         PUBLIC        P3MDOUT
+  D:0008H         PUBLIC        b0
+  C:0A5AH         PUBLIC        _delay
+  D:000AH         PUBLIC        b1
+  D:000CH         PUBLIC        b2
+  D:000EH         PUBLIC        b3
+  C:0A72H         PUBLIC        _cmdwrt
+  D:0010H         PUBLIC        b4
+  D:0012H         PUBLIC        b5
+  D:0014H         PUBLIC        b6
+  D:0016H         PUBLIC        b7
+  D:0018H         PUBLIC        value
+  C:0800H         PUBLIC        main
+  D:0019H         PUBLIC        x1
+  D:001BH         PUBLIC        x2
+  D:001DH         PUBLIC        x3
+  D:001FH         PUBLIC        x4
+  D:0021H         PUBLIC        dec
+  D:00F5H         PUBLIC        P4MDIN
+  B:0090H.7       PUBLIC        LCD_EN
+  D:0023H         PUBLIC        msg
+  B:0090H.5       PUBLIC        LCD_RS
+  B:0090H.6       PUBLIC        LCD_RW
+  D:0024H         PUBLIC        a
+  C:0A20H         PUBLIC        _convert_display
+  D:0026H         PUBLIC        i
+  B:00B0H.6       PUBLIC        wr_adc
+  C:0A84H         PUBLIC        _datawrt
+  -------         PROC          MAIN
+  C:0800H         LINE#         26
+  C:0800H         LINE#         27
+  C:0800H         LINE#         29
+  C:0803H         LINE#         30
+  C:0806H         LINE#         34
+  C:0809H         LINE#         35
+  C:080CH         LINE#         37
+  C:0811H         LINE#         38
+  C:0814H         LINE#         39
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/16/2021  21:28:26  PAGE 3
+
+
+  C:0819H         LINE#         40
+  C:081CH         LINE#         41
+  C:0821H         LINE#         42
+  C:0824H         LINE#         43
+  C:0829H         LINE#         44
+  C:082CH         LINE#         46
+  C:0834H         LINE#         47
+  C:083CH         LINE#         48
+  C:0844H         LINE#         49
+  C:084CH         LINE#         50
+  C:0854H         LINE#         51
+  C:085CH         LINE#         52
+  C:0864H         LINE#         53
+  C:086CH         LINE#         54
+  C:0874H         LINE#         55
+  C:087CH         LINE#         56
+  C:0884H         LINE#         58
+  C:0884H         LINE#         59
+  C:0884H         LINE#         60
+  C:0886H         LINE#         61
+  C:088DH         LINE#         62
+  C:088FH         LINE#         64
+  C:0896H         LINE#         65
+  C:089FH         LINE#         66
+  C:08A8H         LINE#         67
+  C:08B1H         LINE#         68
+  C:08BAH         LINE#         69
+  C:08C3H         LINE#         70
+  C:08CCH         LINE#         71
+  C:08D5H         LINE#         73
+  C:0958H         LINE#         75
+  C:095DH         LINE#         76
+  C:0964H         LINE#         79
+  C:0969H         LINE#         80
+  C:096EH         LINE#         81
+  C:0971H         LINE#         82
+  C:0976H         LINE#         83
+  C:0979H         LINE#         84
+  C:097EH         LINE#         85
+  C:0981H         LINE#         86
+  C:0986H         LINE#         87
+  C:0989H         LINE#         88
+  C:098EH         LINE#         89
+  C:0991H         LINE#         90
+  -------         ENDPROC       MAIN
+  C:0A56H         SYMBOL        L?0018
+  -------         PROC          L?0017
+  -------         ENDPROC       L?0017
+  C:0A56H         SYMBOL        L?0018
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        Ms
+  -------         DO            
+  D:0004H         SYMBOL        n
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0A5AH         LINE#         95
+  C:0A5AH         LINE#         96
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/16/2021  21:28:26  PAGE 4
+
+
+  C:0A5AH         LINE#         97
+  C:0A61H         LINE#         98
+  C:0A71H         LINE#         99
+  -------         ENDPROC       _DELAY
+  -------         PROC          _CMDWRT
+  D:0007H         SYMBOL        Command
+  C:0A72H         LINE#         101
+  C:0A72H         LINE#         102
+  C:0A72H         LINE#         103
+  C:0A74H         LINE#         104
+  C:0A76H         LINE#         105
+  C:0A78H         LINE#         106
+  C:0A7AH         LINE#         107
+  C:0A81H         LINE#         108
+  C:0A83H         LINE#         109
+  -------         ENDPROC       _CMDWRT
+  -------         PROC          _DATAWRT
+  D:0007H         SYMBOL        Character
+  C:0A84H         LINE#         111
+  C:0A84H         LINE#         112
+  C:0A84H         LINE#         113
+  C:0A86H         LINE#         114
+  C:0A88H         LINE#         115
+  C:0A8AH         LINE#         116
+  C:0A8CH         LINE#         117
+  C:0A93H         LINE#         118
+  C:0A95H         LINE#         119
+  -------         ENDPROC       _DATAWRT
+  -------         PROC          _CONVERT_DISPLAY
+  D:0007H         SYMBOL        value
+  C:0A20H         LINE#         121
+  C:0A20H         LINE#         122
+  C:0A20H         LINE#         123
+  C:0A2DH         LINE#         124
+  C:0A40H         LINE#         125
+  C:0A4FH         LINE#         126
+  C:0A55H         LINE#         127
+  -------         ENDPROC       _CONVERT_DISPLAY
+  -------         ENDMOD        THERMOMETER
+
+  -------         MODULE        ?C?IMUL
+  C:0A96H         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0211H BYTE (25%) *
+******************************************************************************
+
+Program Size: data=40.0 xdata=0 code=691
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

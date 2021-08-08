@@ -1,0 +1,156 @@
+C51 COMPILER V9.60.0.0   THERMOMETER                                                       06/16/2021 21:28:26 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE THERMOMETER
+OBJECT MODULE PLACED IN .\Objects\Thermometer.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Thermometer.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\Thermometer.lst) TABS(2) OBJECT(.\Objects\Thermometer.obj)
+
+line level    source
+
+   1          #include "c8051F340.h"
+   2          #include "math.h"
+   3          #include "stdio.h"
+   4          
+   5          void delay(unsigned int Ms);                //function for creating delay
+   6          void cmdwrt(unsigned char Command);         //function for sending commands to 16*2 lcd display
+   7          void datawrt(unsigned char Character);      //function for sending Data to 16*2 lcd display
+   8          void convert_display(unsigned char value);  //function for converting ADC value to temperature
+   9          
+  10          sbit LCD_RS = P1^5;     //Register Select(RS) pin of 16*2 lcd
+  11          sbit LCD_RW = P1^6;     //Read/Write(RW) pin of 16*2 lcd
+  12          sbit LCD_EN = P1^7;     //Enable(E) pin of 16*2 lcd
+  13          
+  14          
+  15          sbit wr_adc=P3^6;       //Write(WR) pin of ADC0804
+  16          
+  17          //Read(RD) pin of ADC0804 grounded
+  18          //Interrupt(INTR) pin of ADC0804 tied to WR for continous input
+  19          
+  20          unsigned char i;
+  21          unsigned int x1,x2,x3,x4,a=1;
+  22          unsigned int b0,b1,b2,b3,b4,b5,b6,b7,dec;
+  23          unsigned char value=0, msg;
+  24          
+  25          
+  26          void main()
+  27          {
+  28   1        //LCD Pins
+  29   1        P1MDOUT = 0xE0;    // P1.5, P1.6 & P1.7 output pins 
+  30   1        P2MDOUT = 0xFF;    // P2 output port
+  31   1        
+  32   1        
+  33   1        //ADC Pins
+  34   1        P3MDOUT = 0x40;    // P3.6 output pins  
+  35   1        P4MDIN  = 0xFF;    // Port 4 configured as Input
+  36   1        
+  37   1        cmdwrt(0x0C);   // Display ON, Cursor OFF
+  38   1        delay(50);
+  39   1        cmdwrt(0x01);   // Clear Display Screen
+  40   1        delay(50);
+  41   1        cmdwrt(0x38);   // 2 Lines and 5x7 matrix
+  42   1        delay(50);
+  43   1        cmdwrt(0x80);   // Force cursor to beginning of 1st line
+  44   1        delay(50);
+  45   1      
+  46   1            datawrt('T');     delay(50);
+  47   1            datawrt('E');     delay(50);
+  48   1            datawrt('M');     delay(50);
+  49   1            datawrt('P');     delay(50);      
+  50   1            datawrt('R');     delay(50);
+  51   1            datawrt('A');     delay(50);
+  52   1            datawrt('T');     delay(50);
+  53   1            datawrt('U');     delay(50);
+  54   1            datawrt('R');     delay(50);
+C51 COMPILER V9.60.0.0   THERMOMETER                                                       06/16/2021 21:28:26 PAGE 2   
+
+  55   1            datawrt('E');     delay(50);
+  56   1            datawrt(':');     delay(50);
+  57   1            
+  58   1        while(1)  
+  59   1        { 
+  60   2          wr_adc=0;    //set WR pin LOW 
+  61   2          delay(500);
+  62   2          wr_adc=1;     //send LOW to HIGH pulse on WR pin
+  63   2        
+  64   2          b0= P4^0;
+  65   2          b1= P4^1;
+  66   2          b2= P4^2;
+  67   2          b3= P4^3;
+  68   2          b4= P4^4;
+  69   2          b5= P4^5;
+  70   2          b6= P4^6;
+  71   2          b7= P4^7;
+  72   2          
+  73   2          dec = b0 + (b1*2) + (b2*4) + (b3*8)+ (b4*16) +(b5*32) + (b6*64) + (b7*128);
+  74   2          
+  75   2          convert_display(dec);     //function call to convert ADC Data into temperature and display it on 16*2 lcd 
+             -display
+  76   2          delay(1000);              //interval between every cycles
+  77   2      
+  78   2        /* display temperature on 16*2 lcd display  */
+  79   2          cmdwrt(0xC0);           //command to force the cursor on 2nd line on 16*2 lcd
+  80   2          datawrt(x1);
+  81   2          delay(50);
+  82   2          datawrt(x2);
+  83   2          delay(50);
+  84   2          datawrt(x3);
+  85   2          delay(50);
+  86   2          datawrt(x4);
+  87   2          delay(50);
+  88   2          datawrt('C');
+  89   2          delay(50);
+  90   2        }
+  91   1      }
+  92          
+  93          /*--------FUNCTION DEFNITIONS--------*/
+  94          
+  95          void delay(unsigned int Ms)
+  96          {
+  97   1        unsigned int n, i=Ms*100;
+  98   1        for(n=0;n<i;n++);     //repeat for Ms miliseconds
+  99   1      }
+ 100          
+ 101          void cmdwrt(unsigned char Command)
+ 102            {
+ 103   1          P2 = Command;   //send the command to Port 2 on which 16*2 lcd is connected
+ 104   1          LCD_RS = 0;     //make RS = 0 for Command
+ 105   1          LCD_RW = 0;     //make RW = 0 for write operation
+ 106   1          LCD_EN = 1;     //send a HIGH to LOW pulse on Enable(E) pin to start command write operation 
+ 107   1          delay(15);
+ 108   1          LCD_EN = 0;
+ 109   1        }
+ 110          
+ 111          void datawrt(unsigned char Character)
+ 112            {
+ 113   1          P2 = Character; //send the Data to Port 2 on which 16*2 lcd is connected
+ 114   1          LCD_RS = 1;     //make RS = 1 for Data
+ 115   1          LCD_RW = 0;     //make RW = 0 for write operation
+C51 COMPILER V9.60.0.0   THERMOMETER                                                       06/16/2021 21:28:26 PAGE 3   
+
+ 116   1          LCD_EN = 1;     //send a HIGH to LOW pulse on Enable(E) pin to start datawrite operation
+ 117   1          delay(15);
+ 118   1          LCD_EN = 0;
+ 119   1        }
+ 120          
+ 121          void convert_display(unsigned char value)
+ 122          {
+ 123   1        x1 = ((value/100))+0x30;      // hundred's Value      
+ 124   1        x2 = ((value/10)%10)+0x30;    // ten's Value
+ 125   1        x3 = (value%10)+0x30;         // ones's Value
+ 126   1        x4 = 0xDF;                    // ASCII value of degree(°) symbol
+ 127   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    522    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     31    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

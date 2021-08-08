@@ -1,0 +1,240 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/03/2021  11:04:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\test.obj TO .\Objects\test PRINT (.\Listings\test.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\test.obj (TEST)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\test (TEST)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     001FH     UNIT         ?DT?TEST
+            IDATA   0027H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     019CH     UNIT         ?PR?MAIN?TEST
+            CODE    099CH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0A28H     003CH     UNIT         ?PR?_CONVERT_DISPLAY?TEST
+            CODE    0A64H     0024H     UNIT         ?PR?_DELAY?TEST
+            CODE    0A88H     0012H     UNIT         ?PR?_CMDWRT?TEST
+            CODE    0A9AH     0012H     UNIT         ?PR?_DATAWRT?TEST
+            CODE    0AACH     0008H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\test (TEST)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?TEST
+  +--> ?C_INITSEG
+
+?PR?MAIN?TEST
+  +--> ?PR?_CMDWRT?TEST
+  +--> ?PR?_DELAY?TEST
+  +--> ?PR?_DATAWRT?TEST
+  +--> ?PR?_CONVERT_DISPLAY?TEST
+
+?PR?_CMDWRT?TEST
+  +--> ?PR?_DELAY?TEST
+
+?PR?_DATAWRT?TEST
+  +--> ?PR?_DELAY?TEST
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/03/2021  11:04:54  PAGE 2
+
+
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\test (TEST)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TEST
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A4H         PUBLIC        P0MDOUT
+  D:00A6H         PUBLIC        P2MDOUT
+  D:00A7H         PUBLIC        P3MDOUT
+  D:0008H         PUBLIC        b0
+  C:0A68H         PUBLIC        _delay
+  D:000AH         PUBLIC        b1
+  D:000CH         PUBLIC        b2
+  D:000EH         PUBLIC        b3
+  C:0A88H         PUBLIC        _cmdwrt
+  D:0010H         PUBLIC        b4
+  D:0012H         PUBLIC        b5
+  D:0014H         PUBLIC        b6
+  D:0016H         PUBLIC        b7
+  D:0018H         PUBLIC        value
+  C:0800H         PUBLIC        main
+  D:0019H         PUBLIC        x1
+  D:001BH         PUBLIC        x2
+  D:001DH         PUBLIC        x3
+  D:00F2H         PUBLIC        P1MDIN
+  D:001FH         PUBLIC        x4
+  D:0021H         PUBLIC        dec
+  B:00A0H.7       PUBLIC        LCD_EN
+  D:0023H         PUBLIC        msg
+  B:00A0H.5       PUBLIC        LCD_RS
+  B:00A0H.6       PUBLIC        LCD_RW
+  D:0024H         PUBLIC        a
+  C:0A28H         PUBLIC        _convert_display
+  D:0026H         PUBLIC        i
+  B:0080H.0       PUBLIC        wr_adc
+  C:0A9AH         PUBLIC        _datawrt
+  -------         PROC          MAIN
+  C:0800H         LINE#         26
+  C:0800H         LINE#         27
+  C:0800H         LINE#         29
+  C:0803H         LINE#         30
+  C:0806H         LINE#         33
+  C:0809H         LINE#         34
+  C:080CH         LINE#         36
+  C:0811H         LINE#         37
+  C:0814H         LINE#         38
+  C:0819H         LINE#         39
+  C:081CH         LINE#         40
+  C:0821H         LINE#         41
+  C:0824H         LINE#         42
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/03/2021  11:04:54  PAGE 3
+
+
+  C:0829H         LINE#         43
+  C:082CH         LINE#         45
+  C:0831H         LINE#         46
+  C:0834H         LINE#         47
+  C:0839H         LINE#         48
+  C:083CH         LINE#         49
+  C:0841H         LINE#         50
+  C:0844H         LINE#         51
+  C:0849H         LINE#         52
+  C:084CH         LINE#         53
+  C:0851H         LINE#         54
+  C:0854H         LINE#         55
+  C:0859H         LINE#         56
+  C:085CH         LINE#         57
+  C:0861H         LINE#         58
+  C:0864H         LINE#         59
+  C:0869H         LINE#         60
+  C:086CH         LINE#         61
+  C:0871H         LINE#         62
+  C:0874H         LINE#         63
+  C:0879H         LINE#         64
+  C:087CH         LINE#         65
+  C:0881H         LINE#         66
+  C:0884H         LINE#         68
+  C:088AH         LINE#         69
+  C:088AH         LINE#         70
+  C:088CH         LINE#         71
+  C:0893H         LINE#         72
+  C:0895H         LINE#         74
+  C:089CH         LINE#         75
+  C:08A5H         LINE#         76
+  C:08AEH         LINE#         77
+  C:08B7H         LINE#         78
+  C:08C0H         LINE#         79
+  C:08C9H         LINE#         80
+  C:08D2H         LINE#         81
+  C:08DBH         LINE#         83
+  C:095EH         LINE#         85
+  C:0962H         LINE#         87
+  C:0965H         LINE#         88
+  C:096CH         LINE#         91
+  C:0971H         LINE#         92
+  C:0976H         LINE#         93
+  C:0979H         LINE#         94
+  C:097EH         LINE#         95
+  C:0981H         LINE#         96
+  C:0986H         LINE#         97
+  C:0989H         LINE#         98
+  C:098EH         LINE#         99
+  C:0991H         LINE#         100
+  C:0996H         LINE#         101
+  C:0999H         LINE#         102
+  -------         ENDPROC       MAIN
+  C:0A64H         SYMBOL        L?0022
+  -------         PROC          L?0021
+  -------         ENDPROC       L?0021
+  C:0A64H         SYMBOL        L?0022
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/03/2021  11:04:54  PAGE 4
+
+
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        Ms
+  -------         DO            
+  D:0004H         SYMBOL        n
+  D:0002H         SYMBOL        i
+  -------         ENDDO         
+  C:0A68H         LINE#         108
+  C:0A68H         LINE#         109
+  C:0A68H         LINE#         111
+  C:0A72H         LINE#         112
+  C:0A72H         LINE#         113
+  C:0A80H         LINE#         114
+  C:0A87H         LINE#         115
+  -------         ENDPROC       _DELAY
+  -------         PROC          _CMDWRT
+  D:0007H         SYMBOL        Command
+  C:0A88H         LINE#         117
+  C:0A88H         LINE#         118
+  C:0A88H         LINE#         119
+  C:0A8AH         LINE#         120
+  C:0A8CH         LINE#         121
+  C:0A8EH         LINE#         122
+  C:0A90H         LINE#         123
+  C:0A97H         LINE#         124
+  C:0A99H         LINE#         125
+  -------         ENDPROC       _CMDWRT
+  -------         PROC          _DATAWRT
+  D:0007H         SYMBOL        Character
+  C:0A9AH         LINE#         127
+  C:0A9AH         LINE#         128
+  C:0A9AH         LINE#         129
+  C:0A9CH         LINE#         130
+  C:0A9EH         LINE#         131
+  C:0AA0H         LINE#         132
+  C:0AA2H         LINE#         133
+  C:0AA9H         LINE#         134
+  C:0AABH         LINE#         135
+  -------         ENDPROC       _DATAWRT
+  -------         PROC          _CONVERT_DISPLAY
+  D:0007H         SYMBOL        value
+  C:0A28H         LINE#         137
+  C:0A28H         LINE#         138
+  C:0A28H         LINE#         139
+  C:0A3BH         LINE#         140
+  C:0A4EH         LINE#         141
+  C:0A5DH         LINE#         142
+  C:0A63H         LINE#         143
+  -------         ENDPROC       _CONVERT_DISPLAY
+  -------         ENDMOD        TEST
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0227H BYTE (26%) *
+******************************************************************************
+
+Program Size: data=40.0 xdata=0 code=695
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
